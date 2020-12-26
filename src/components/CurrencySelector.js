@@ -17,7 +17,7 @@ const CurrencySelector = (props) => (
             ([key,value]) => 
               <Option 
                 key={key} 
-                value={`${key} (${value})`}
+                value={value}
               >
                 {`${key} (${value})`}
               </Option>
@@ -26,6 +26,7 @@ const CurrencySelector = (props) => (
     </Select>
     <InputNumber
       defaultValue={1}
+      min={0}
       disabled={!!props.inputDisabled}
       onChange={props.onInputChange}
     />
