@@ -2,12 +2,14 @@ import {
   SET_SOURCE_AMOUNT,
   SET_SOURCE_CURRENCY,
   SET_TARGET_CURRENCY,
+  SOURCE_CURRENCY_DEFAULT_VALUE,
+  TARGET_CURRENCY_DEFAULT_VALUE,
   physicalCurrencies
 } from '../constants';
 
 const initialState = {
-  sourceCurrency: '',
-  targetCurrency: '',
+  sourceCurrency: SOURCE_CURRENCY_DEFAULT_VALUE,
+  targetCurrency: TARGET_CURRENCY_DEFAULT_VALUE,
   sourceAmount: 1,
   currencies: physicalCurrencies
 };

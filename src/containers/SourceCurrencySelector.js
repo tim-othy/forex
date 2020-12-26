@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import { setSourceCurrency, setSourceAmount } from '../actions';
 import CurrencySelector from '../components/CurrencySelector';
+import { SOURCE_CURRENCY_DEFAULT_VALUE } from '../constants';
 
 const SourceCurrencySelector = (props) => (
   <CurrencySelector
-    defaultValueSelect="FromCurrency"
+    defaultValueSelect={SOURCE_CURRENCY_DEFAULT_VALUE}
     currencies={props.currencies}
     onSelectorChange={(e) => props.setSourceCurrency(e)}
     onInputChange={(e) => props.setSourceAmount(e)}
