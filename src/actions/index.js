@@ -1,9 +1,11 @@
+import { SET_SOURCE_CURRENCY, SET_SOURCE_AMOUNT } from '../constants';
+
 export const setSourceCurrency = (sourceCurrency) => ({
-  type: 'SET_SOURCE_CURRENCY',
+  type: SET_SOURCE_CURRENCY,
   sourceCurrency
 });
 
 export const setSourceAmount = (sourceAmount) => ({
-  type: 'SET_SOURCE_AMOUNT',
+  type: SET_SOURCE_AMOUNT,
   sourceAmount
 })
