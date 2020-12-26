@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setSourceCurrency } from '../actions';
+import { setSourceCurrency, setSourceAmount } from '../actions';
 import CurrencySelector from '../components/CurrencySelector';
 
 const SourceCurrencySelector = (props) => (
@@ -8,7 +8,7 @@ const SourceCurrencySelector = (props) => (
     defaultValueSelect="FromCurrency"
     currencies={props.currencies}
     onSelectorChange={(e) => props.setSourceCurrency(e)}
-    onInputChange={() => {console.log('onInputChange')}}
+    onInputChange={(e) => props.setSourceAmount(e)}
   />
 );
 
@@ -17,7 +17,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setSourceCurrency: (sourceCurrency) => dispatch(setSourceCurrency(sourceCurrency))
+  setSourceCurrency: (sourceCurrency) => dispatch(setSourceCurrency(sourceCurrency)),
+  setSourceAmount: (sourceAmount) => dispatch(setSourceAmount(sourceAmount))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SourceCurrencySelector);
