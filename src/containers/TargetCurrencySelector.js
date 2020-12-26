@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 import CurrencySelector from '../components/CurrencySelector';
 import { setTargetCurrency } from '../actions';
 
@@ -7,7 +8,7 @@ const TargetCurrencySelector = (props) => (
     defaultValueSelect="ToCurrency"
     currencies={props.currencies}
     onSelectorChange={(e) => props.setTargetCurrency(e)}
-    onInputChange={() => {console.log('onInputChange')}}
+    onInputChange={() => null}
     inputDisabled={true}
   />
 );
@@ -19,5 +20,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setTargetCurrency: (targetCurrency) => dispatch(setTargetCurrency(targetCurrency))
 });
+
+TargetCurrencySelector.propTypes = {
+  currencies: PropTypes.object.isRequired,
+  setTargetCurrency: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(TargetCurrencySelector);

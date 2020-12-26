@@ -1,27 +1,38 @@
-import './App.css';
-import 'antd/dist/antd.css'
 import React from 'react';
-import { Provider } from 'react-redux';
-
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
 import { Button, Card } from 'antd';
 
 import SourceCurrencySelector from './containers/SourceCurrencySelector';
 import TargetCurrencySelector from './containers/TargetCurrencySelector';
-import configureStore from './store/configureStore'
 
-function App() {
-  return (
-    <Provider store={configureStore()}>
+import 'antd/dist/antd.css'
+
+
+class App extends React.Component {
+  render() {
+    return (
       <Card>
         <SourceCurrencySelector />
-        <TargetCurrencySelector
-          onSelectorChange={() => {console.log('onSelectorChange')}}
-          onInputChange={() => {console.log('onInputChange')}}
-        />
+        <TargetCurrencySelector />
         <Button>Convert</Button>
-      </Card>
-    </Provider>
-  );
+      </Card>  
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  sourceCurrency: state.sourceCurrency,
+  targetCurrency: state.targetCurrency
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+App.propTypes = {
+  sourceCurrency: PropTypes.string.isRequired,
+  targetCurrency: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
