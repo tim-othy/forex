@@ -21,6 +21,7 @@ function App() {
         currencies={physicalCurrencies}
         onSelectorChange={() => {console.log('onSelectorChange')}}
         onInputChange={() => {console.log('onInputChange')}}
+        inputDisabled={true}
       />
     </Card>
   );

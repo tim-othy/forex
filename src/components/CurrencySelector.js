@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { InputNumber, Select } from 'antd';
 
 const { Option } = Select;
@@ -11,16 +12,32 @@ const CurrencySelector = (props) => (
       showSearch={true}
     >
     {
-      Object.keys(props.currencies)
-        .map(currency => <Option key = {currency} value={currency}>{currency}</Option>)
+        Object.entries(props.currencies)
+          .map(
+            ([key,value]) => 
+              <Option 
+                key={key} 
+                value={`${key} (${value})`}
+              >
+                {`${key} (${value})`}
+              </Option>
+          )
     }
     </Select>
     <InputNumber
       defaultValue={1}
-      disabled={!!props.disableInput}
+      disabled={!!props.inputDisabled}
       onChange={props.onInputChange}
     />
   </>
 );
+
+CurrencySelector.propTypes = {
+  defaultValueSelect: PropTypes.string.isRequired,
+  onSelectorChange: PropTypes.func.isRequired,
+  currencies: PropTypes.object.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  inputDisabled: PropTypes.bool
+}
 
 export default CurrencySelector;
