@@ -7,7 +7,7 @@ const SourceCurrencySelector = (props) => (
   <CurrencySelector
     defaultValueSelect="FromCurrency"
     currencies={props.currencies}
-    onSelectorChange={(e) => props.dispatch(setSourceCurrency(e))}
+    onSelectorChange={(e) => props.setSourceCurrency(e)}
     onInputChange={() => {console.log('onInputChange')}}
   />
 );
@@ -16,8 +16,8 @@ const mapStateToProps = (state) => ({
   currencies: state.currencies
 });
 
-// const mapDispatchToProps = (dispatch) => {
-//   setSourceCurrency: () => { console.log("called action") }
-// }
+const mapDispatchToProps = (dispatch) => ({
+  setSourceCurrency: (sourceCurrency) => dispatch(setSourceCurrency(sourceCurrency))
+});
 
-export default connect(mapStateToProps, null)(SourceCurrencySelector);
+export default connect(mapStateToProps, mapDispatchToProps)(SourceCurrencySelector);
