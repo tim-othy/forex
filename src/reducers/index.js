@@ -1,5 +1,9 @@
 import { physicalCurrencies } from '../currencies';
-import { SET_SOURCE_CURRENCY, SET_SOURCE_AMOUNT } from '../constants';
+import { 
+  SET_SOURCE_AMOUNT,
+  SET_SOURCE_CURRENCY,
+  SET_TARGET_CURRENCY 
+} from '../constants';
 
 const initialState = {
   sourceCurrency: '',
@@ -10,18 +14,24 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch(action.type) {
+    case SET_SOURCE_AMOUNT:
+      const sourceAmount = action.sourceAmount;
+      return {
+        ...state,
+        sourceAmount
+      };
     case SET_SOURCE_CURRENCY:
       const sourceCurrency = action.sourceCurrency;
       return {
         ...state,
         sourceCurrency
       };
-    case SET_SOURCE_AMOUNT:
-      const sourceAmount = action.sourceAmount;
+    case SET_TARGET_CURRENCY:
+      const targetCurrency = action.targetCurrency;
       return {
         ...state,
-        sourceAmount
-      }
+        targetCurrency
+      };
     default:
       return state;
   }
