@@ -1,8 +1,8 @@
-import { physicalCurrencies } from '../currencies';
 import { 
   SET_SOURCE_AMOUNT,
   SET_SOURCE_CURRENCY,
-  SET_TARGET_CURRENCY 
+  SET_TARGET_CURRENCY,
+  physicalCurrencies
 } from '../constants';
 
 const initialState = {

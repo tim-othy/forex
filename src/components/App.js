@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Button, Card } from 'antd';
 
-import SourceCurrencySelector from './containers/SourceCurrencySelector';
-import TargetCurrencySelector from './containers/TargetCurrencySelector';
+import SourceCurrencySelector from '../containers/SourceCurrencySelector';
+import TargetCurrencySelector from '../containers/TargetCurrencySelector';
 
 import 'antd/dist/antd.css'
 

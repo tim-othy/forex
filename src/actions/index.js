@@ -18,4 +18,4 @@ export const setSourceCurrency = (sourceCurrency) => ({
 export const setTargetCurrency = (targetCurrency) => ({
   type: SET_TARGET_CURRENCY,
   targetCurrency
-})
+});
