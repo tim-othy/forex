@@ -1,5 +1,14 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { FETCH_EXCHANGE_RATE_REQUESTED, FETCH_EXCHANGE_RATE_SUCCEEDED } from '../constants';
+import { 
+  call, 
+  put, 
+  takeLatest 
+} from 'redux-saga/effects'
+
+import { 
+  FETCH_EXCHANGE_RATE_REQUESTED, 
+  FETCH_EXCHANGE_RATE_SUCCEEDED, 
+  FETCH_EXCHANGE_RATE_FAILED 
+} from '../constants';
 
 function* fetchExchangeRateSaga() {
   yield takeLatest(FETCH_EXCHANGE_RATE_REQUESTED, fetchExchangeRate);
@@ -7,36 +16,34 @@ function* fetchExchangeRateSaga() {
 
 
 function* fetchExchangeRate(action) {
-  console.log('test');
-  const exchangeRate = 1;
-  yield put({type: FETCH_EXCHANGE_RATE_SUCCEEDED, exchangeRate})
-  // try {
-  //   const data = yield call(
-  //     fetchAlphaVantageExchangeRate(action.sourceCurrency, action.targetCurrency)
-  //   );
+  try {
+    const response = yield call(
+      fetchAlphaVantageExchangeRate,
+      action.sourceCurrency, 
+      action.targetCurrency
+    );
 
-  //   const exchangeRate = data['5. Exchange Rate']
-
-  //   yield put({type: 'FETCH_EXCHANGE_RATE_SUCCEEDED', exchangeRate})
-  // } catch (e) {
-  //   yield put({type: 'FETCH_EXCHANGE_RATE_FAILED', message: e.message})
-  // }
+    const exchangeRate = Number(response.exchangeRate);
+    yield put({type: FETCH_EXCHANGE_RATE_SUCCEEDED, exchangeRate})
+  } catch (e) {
+    const message = e.message;
+    yield put({type: FETCH_EXCHANGE_RATE_FAILED, message})
+  }
 }
 
-// const fetchAlphaVantageExchangeRate = (sourceCurrency, targetCurrency) => {
-//   return fetch(
-//     `https://www.alphavantage.co/query?
-//       function=CURRENCY_EXCHANGE_RATE&
-//       from_currency=${sourceCurrency}&
-//       to_currency=${targetCurrency}&
-//       apikey=${process.env.REACT_APP_ALPHA_VANTAGE_API_KEY}`, 
-//     {
-//       method:'GET',
-//       headers:{
-//         'Content-Type': 'application/json',
-//       }
-//     }
-//   ).then(response => response.json());
-// }
+const fetchAlphaVantageExchangeRate = async (source, target) => {
+  const url = 'aHR0cHM6Ly9ldXJvcGUtd2VzdDEtdHJhbnMtdHJlZXMtMjgzMzE3LmNsb3VkZnVuY3Rpb25zLm5ldC9mZXRjaC1leGNoYW5nZS1yYXRl';
+  const response = await fetch(
+    atob(url),
+    {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sourceCurrency: source, targetCurrency: target })
+    });
+  return await response.json();
+}
 
 export default fetchExchangeRateSaga;
