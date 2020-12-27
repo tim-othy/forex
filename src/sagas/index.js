@@ -4,16 +4,16 @@ import {
   takeLatest 
 } from 'redux-saga/effects'
 
-import { 
-  FETCH_EXCHANGE_RATE_REQUESTED, 
-  FETCH_EXCHANGE_RATE_SUCCEEDED, 
-  FETCH_EXCHANGE_RATE_FAILED 
-} from '../constants';
+import { FETCH_EXCHANGE_RATE_REQUESTED } from '../constants';
+
+import {
+  fetchExchangeRateSucceeded,
+  fetchExchangeRateFailed
+} from '../actions';
 
 function* fetchExchangeRateSaga() {
   yield takeLatest(FETCH_EXCHANGE_RATE_REQUESTED, fetchExchangeRate);
 }
-
 
 function* fetchExchangeRate(action) {
   try {
@@ -24,10 +24,9 @@ function* fetchExchangeRate(action) {
     );
 
     const exchangeRate = Number(response.exchangeRate);
-    yield put({type: FETCH_EXCHANGE_RATE_SUCCEEDED, exchangeRate})
+    yield put(fetchExchangeRateSucceeded(exchangeRate));
   } catch (e) {
-    const message = e.message;
-    yield put({type: FETCH_EXCHANGE_RATE_FAILED, message})
+    yield put(fetchExchangeRateFailed())
   }
 }
 

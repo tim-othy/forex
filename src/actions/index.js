@@ -2,7 +2,9 @@ import {
   SET_SOURCE_AMOUNT ,
   SET_SOURCE_CURRENCY, 
   SET_TARGET_CURRENCY,
-  FETCH_EXCHANGE_RATE_REQUESTED
+  FETCH_EXCHANGE_RATE_REQUESTED,
+  FETCH_EXCHANGE_RATE_SUCCEEDED,
+  FETCH_EXCHANGE_RATE_FAILED 
 } from '../constants';
 
 
@@ -21,8 +23,17 @@ export const setTargetCurrency = (targetCurrency) => ({
   targetCurrency
 });
 
-export const fetchExchangeRate = (sourceCurrency, targetCurrency) => ({
+export const fetchExchangeRateRequested = (sourceCurrency, targetCurrency) => ({
   type: FETCH_EXCHANGE_RATE_REQUESTED,
   sourceCurrency,
   targetCurrency
+})
+
+export const fetchExchangeRateSucceeded = (exchangeRate) => ({
+  type: FETCH_EXCHANGE_RATE_SUCCEEDED, 
+  exchangeRate
+})
+
+export const fetchExchangeRateFailed = () => ({
+  type: FETCH_EXCHANGE_RATE_FAILED 
 })

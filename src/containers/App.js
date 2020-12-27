@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Button, Card, notification, Row } from 'antd';
 
-import { fetchExchangeRate } from '../actions';
+import { fetchExchangeRateRequested } from '../actions';
 import SourceCurrencySelector from './SourceCurrencySelector';
 import TargetCurrencySelector from './TargetCurrencySelector';
 import {
@@ -74,7 +74,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchExchangeRate: (sourceCurrency, targetCurrency) => dispatch(fetchExchangeRate(sourceCurrency, targetCurrency))
+  fetchExchangeRate: (sourceCurrency, targetCurrency) => dispatch(fetchExchangeRateRequested(sourceCurrency, targetCurrency))
 });
 
 App.propTypes = {
