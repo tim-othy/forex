@@ -75,6 +75,8 @@ const mapDispatchToProps = (dispatch) => ({
 App.propTypes = {
   sourceCurrency: PropTypes.string.isRequired,
   targetCurrency: PropTypes.string.isRequired,
+  fetchExchangeRate: PropTypes.func.isRequired,
+  exchangeRate: PropTypes.number,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
