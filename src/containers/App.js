@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Button, Card, notification } from 'antd';
 
+import { fetchExchangeRate } from '../actions';
 import SourceCurrencySelector from './SourceCurrencySelector';
 import TargetCurrencySelector from './TargetCurrencySelector';
 import {
@@ -32,11 +33,27 @@ class App extends React.Component {
         message: 'Please select a target currency which differs from your source currency'
       });
     }
+
+    if (
+      this.props.sourceCurrency !== this.props.targetCurrency &&
+      this.props.targetCurrency !== TARGET_CURRENCY_DEFAULT_VALUE &&
+      this.props.sourceCurrency !== SOURCE_CURRENCY_DEFAULT_VALUE
+    ) {
+      this.props.fetchExchangeRate(this.props.sourceCurrency, this.props.targetCurrency);
+    }
   }
+
+  exchangeRatePopulated = () => (
+    this.props.exchangeRate !== 0
+  );
+
+  renderExchangeRate = () => (
+    `1 ${this.props.sourceCurrency} equals ${this.props.exchangeRate} ${this.props.targetCurrency}`
+  );
 
   render() {
     return (
-      <Card>
+      <Card title={this.exchangeRatePopulated() ? this.renderExchangeRate() : null}>
         <SourceCurrencySelector />
         <TargetCurrencySelector />
         <Button onClick={this.handleClick}>Convert</Button>
@@ -47,11 +64,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   sourceCurrency: state.sourceCurrency,
-  targetCurrency: state.targetCurrency
+  targetCurrency: state.targetCurrency,
+  exchangeRate: state.exchangeRate
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  fetchExchangeRate: (sourceCurrency, targetCurrency) => dispatch(fetchExchangeRate(sourceCurrency, targetCurrency))
 });
 
 App.propTypes = {

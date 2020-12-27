@@ -1,7 +1,8 @@
 import { 
   SET_SOURCE_AMOUNT ,
   SET_SOURCE_CURRENCY, 
-  SET_TARGET_CURRENCY
+  SET_TARGET_CURRENCY,
+  FETCH_EXCHANGE_RATE_REQUESTED
 } from '../constants';
 
 
@@ -19,3 +20,9 @@ export const setTargetCurrency = (targetCurrency) => ({
   type: SET_TARGET_CURRENCY,
   targetCurrency
 });
+
+export const fetchExchangeRate = (sourceCurrency, targetCurrency) => ({
+  type: FETCH_EXCHANGE_RATE_REQUESTED,
+  sourceCurrency,
+  targetCurrency
+})
