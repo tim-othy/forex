@@ -43,17 +43,17 @@ class App extends React.Component {
     }
   }
 
-  exchangeRatePopulated = () => (
-    this.props.exchangeRate !== 0
-  );
+  // exchangeRatePopulated = () => (
+  //   this.props.exchangeRate !== 0
+  // );
 
-  renderExchangeRate = () => (
-    `1 ${this.props.sourceCurrency} equals ${this.props.exchangeRate} ${this.props.targetCurrency}`
-  );
+  // renderExchangeRate = () => (
+  //   `1 ${this.props.sourceCurrency} equals ${this.props.exchangeRate} ${this.props.targetCurrency}`
+  // );
 
   render() {
     return (
-      <Card title={this.exchangeRatePopulated() ? this.renderExchangeRate() : null}>
+      <Card title={this.props.headerMessage}>
         <SourceCurrencySelector />
         <TargetCurrencySelector />
         <Button onClick={this.handleClick}>Convert</Button>
@@ -65,7 +65,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   sourceCurrency: state.sourceCurrency,
   targetCurrency: state.targetCurrency,
-  exchangeRate: state.exchangeRate
+  exchangeRate: state.exchangeRate,
+  headerMessage: state.headerMessage
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -76,6 +77,7 @@ App.propTypes = {
   sourceCurrency: PropTypes.string.isRequired,
   targetCurrency: PropTypes.string.isRequired,
   fetchExchangeRate: PropTypes.func.isRequired,
+  headerMessage: PropTypes.string,
   exchangeRate: PropTypes.number,
 };
 
