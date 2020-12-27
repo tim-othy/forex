@@ -14,8 +14,13 @@ const SourceCurrencySelector = (props) => (
     currencies={physicalCurrencies}
     onSelectorChange={(e) => props.setSourceCurrency(e)}
     onInputChange={(e) => props.setSourceAmount(e)}
+    inputNumberValue={props.sourceAmount}
   />
 );
+
+const mapStateToProps = (state) => ({
+  sourceAmount: state.sourceAmount
+})
 
 const mapDispatchToProps = (dispatch) => ({
   setSourceCurrency: (sourceCurrency) => dispatch(setSourceCurrency(sourceCurrency)),
@@ -27,4 +32,4 @@ SourceCurrencySelector.propTypes = {
   setSourceAmount: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(SourceCurrencySelector);
+export default connect(mapStateToProps, mapDispatchToProps)(SourceCurrencySelector);

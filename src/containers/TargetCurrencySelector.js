@@ -13,9 +13,14 @@ const TargetCurrencySelector = (props) => (
     currencies={physicalCurrencies}
     onSelectorChange={(e) => props.setTargetCurrency(e)}
     onInputChange={() => null}
+    inputNumberValue={props.targetAmount}
     inputDisabled={true}
   />
 );
+
+const mapStateToProps = (state) => ({
+  targetAmount: state.targetAmount
+})
 
 const mapDispatchToProps = (dispatch) => ({
   setTargetCurrency: (targetCurrency) => dispatch(setTargetCurrency(targetCurrency))
@@ -25,4 +30,4 @@ TargetCurrencySelector.propTypes = {
   setTargetCurrency: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(TargetCurrencySelector);
+export default connect(mapStateToProps, mapDispatchToProps)(TargetCurrencySelector);

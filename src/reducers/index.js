@@ -14,6 +14,7 @@ const initialState = {
   targetCurrency: TARGET_CURRENCY_DEFAULT_VALUE,
   exchangeRate: 0,
   sourceAmount: 1,
+  targetAmount: null,
   headerMessage: ' '
 };
 
@@ -44,9 +45,11 @@ const rootReducer = (state = initialState, action) => {
       };
     case FETCH_EXCHANGE_RATE_SUCCEEDED:
       const exchangeRate = action.exchangeRate;
+      const targetAmount = state.sourceAmount * exchangeRate;
       return {
         ...state,
         exchangeRate,
+        targetAmount,
         headerMessage: `1 ${state.sourceCurrency} equals ${state.targetCurrency} ${exchangeRate}`
       }
     case FETCH_EXCHANGE_RATE_FAILED:

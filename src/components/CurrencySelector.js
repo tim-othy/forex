@@ -26,6 +26,7 @@ const CurrencySelector = (props) => (
     </Select>
     <InputNumber
       defaultValue={1}
+      value={props.inputNumberValue}
       min={0}
       disabled={!!props.inputDisabled}
       onChange={props.onInputChange}
@@ -38,7 +39,8 @@ CurrencySelector.propTypes = {
   onSelectorChange: PropTypes.func.isRequired,
   currencies: PropTypes.object.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  inputDisabled: PropTypes.bool
+  inputDisabled: PropTypes.bool,
+  inputNumberValue: PropTypes.number
 }
 
 export default CurrencySelector;
