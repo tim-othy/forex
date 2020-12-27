@@ -32,13 +32,15 @@ const rootReducer = (state = initialState, action) => {
       const sourceCurrency = action.sourceCurrency;
       return {
         ...state,
-        sourceCurrency
+        sourceCurrency,
+        targetAmount: null
       };
     case SET_TARGET_CURRENCY:
       const targetCurrency = action.targetCurrency;
       return {
         ...state,
-        targetCurrency
+        targetCurrency,
+        targetAmount: null
       };
     case FETCH_EXCHANGE_RATE_REQUESTED:
       return {
