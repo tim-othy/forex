@@ -6,7 +6,8 @@ import {
   TARGET_CURRENCY_DEFAULT_VALUE,
   FETCH_EXCHANGE_RATE_REQUESTED,
   FETCH_EXCHANGE_RATE_SUCCEEDED,
-  physicalCurrencies
+  physicalCurrencies,
+  FETCH_EXCHANGE_RATE_FAILED
 } from '../constants';
 
 const initialState = {
@@ -39,14 +40,21 @@ const rootReducer = (state = initialState, action) => {
         targetCurrency
       };
     case FETCH_EXCHANGE_RATE_REQUESTED:
-      return state;
+      return {
+        ...state,
+        headerMessage: 'Loading...'
+      };
     case FETCH_EXCHANGE_RATE_SUCCEEDED:
       const exchangeRate = action.exchangeRate;
-      const headerMessage = `1 ${state.sourceCurrency} equals ${state.targetCurrency} ${exchangeRate}`
       return {
         ...state,
         exchangeRate,
-        headerMessage
+        headerMessage: `1 ${state.sourceCurrency} equals ${state.targetCurrency} ${exchangeRate}`
+      }
+    case FETCH_EXCHANGE_RATE_FAILED:
+      return {
+        ...state,
+        headerMessage: 'Failed to fetch exchange rate'
       }
     default:
       return state;
