@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { Button, Card, notification } from 'antd';
+import { Button, Card, notification, Row } from 'antd';
 
 import { fetchExchangeRate } from '../actions';
 import SourceCurrencySelector from './SourceCurrencySelector';
@@ -54,8 +54,12 @@ class App extends React.Component {
   render() {
     return (
       <Card title={this.props.headerMessage}>
-        <SourceCurrencySelector />
-        <TargetCurrencySelector />
+        <Row style={{ marginBottom: 8 }}>
+          <SourceCurrencySelector />
+        </Row>
+        <Row style={{ marginBottom: 8 }}>
+          <TargetCurrencySelector />
+        </Row>
         <Button onClick={this.handleClick}>Convert</Button>
       </Card>  
     );

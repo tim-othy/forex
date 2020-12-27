@@ -14,7 +14,7 @@ const initialState = {
   targetCurrency: TARGET_CURRENCY_DEFAULT_VALUE,
   exchangeRate: 0,
   sourceAmount: 1,
-  headerMessage: null,
+  headerMessage: ' ',
   currencies: physicalCurrencies
 };
 
