@@ -148,7 +148,6 @@ export const physicalCurrencies = {
 	"Samoan Tala": "WST",
 	"CFA Franc BEAC": "XAF",
 	"East Caribbean Dollar": "XCD",
-	"Special Drawing Rights": "XDR",
 	"CFA Franc BCEAO": "XOF",
 	"CFP Franc": "XPF",
 	"Yemeni Rial": "YER",

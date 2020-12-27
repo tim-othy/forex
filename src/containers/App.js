@@ -43,14 +43,6 @@ class App extends React.Component {
     }
   }
 
-  // exchangeRatePopulated = () => (
-  //   this.props.exchangeRate !== 0
-  // );
-
-  // renderExchangeRate = () => (
-  //   `1 ${this.props.sourceCurrency} equals ${this.props.exchangeRate} ${this.props.targetCurrency}`
-  // );
-
   render() {
     return (
       <Card title={this.props.headerMessage}>
