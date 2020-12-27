@@ -5,7 +5,6 @@ import {
 } from 'redux-saga/effects'
 
 import { FETCH_EXCHANGE_RATE_REQUESTED } from '../constants';
-
 import {
   fetchExchangeRateSucceeded,
   fetchExchangeRateFailed

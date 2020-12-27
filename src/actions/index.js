@@ -7,7 +7,6 @@ import {
   FETCH_EXCHANGE_RATE_FAILED 
 } from '../constants';
 
-
 export const setSourceAmount = (sourceAmount) => ({
   type: SET_SOURCE_AMOUNT,
   sourceAmount
