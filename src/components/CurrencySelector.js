@@ -25,7 +25,6 @@ const CurrencySelector = (props) => (
     }
     </Select>
     <InputNumber
-      defaultValue={1}
       value={props.inputNumberValue}
       min={0}
       disabled={!!props.inputDisabled}

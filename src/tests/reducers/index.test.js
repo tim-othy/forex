@@ -29,6 +29,20 @@ test('should set source amount', () => {
   expect(state.sourceAmount).toEqual(sourceAmount);
 });
 
+test('should set target amount if exchange rate set', () => {
+  const initialState = {
+    exchangeRate: 2.5,
+    headerMessage: ' ',
+    sourceAmount: 1,
+    targetAmount: 2.5,
+    sourceCurrency: 'Currency 1',
+    targetCurrency: 'Currency 2'
+  };
+
+  const state = rootReducer(initialState, { type: SET_SOURCE_AMOUNT, sourceAmount: 100 });
+  expect(state.targetAmount).toEqual(250);
+})
+
 test('should set source currency', () => {
   const sourceCurrency = 'test';
   const state = rootReducer(undefined, { type: SET_SOURCE_CURRENCY, sourceCurrency });

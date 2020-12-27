@@ -22,9 +22,11 @@ const rootReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_SOURCE_AMOUNT:
       const sourceAmount = action.sourceAmount;
+      const updatedTargetAmount = !!state.exchangeRate ? state.exchangeRate * sourceAmount : null;
       return {
         ...state,
-        sourceAmount
+        sourceAmount,
+        targetAmount: updatedTargetAmount
       };
     case SET_SOURCE_CURRENCY:
       const sourceCurrency = action.sourceCurrency;
