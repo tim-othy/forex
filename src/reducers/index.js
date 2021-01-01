@@ -6,16 +6,20 @@ import {
   TARGET_CURRENCY_DEFAULT_VALUE,
   FETCH_EXCHANGE_RATE_REQUESTED,
   FETCH_EXCHANGE_RATE_SUCCEEDED,
-  FETCH_EXCHANGE_RATE_FAILED
+  FETCH_EXCHANGE_RATE_FAILED,
+  EXCHANGE_RATE_DEFAULT_VALUE,
+  SOURCE_AMOUNT_DEFAULT_VALUE,
+  TARGET_AMOUNT_DEFAULT_VALUE,
+  HEADER_MESSAGE_DEFAULT_VALUE
 } from '../constants';
 
 const initialState = {
   sourceCurrency: SOURCE_CURRENCY_DEFAULT_VALUE,
   targetCurrency: TARGET_CURRENCY_DEFAULT_VALUE,
-  exchangeRate: 0,
-  sourceAmount: 1,
-  targetAmount: null,
-  headerMessage: ' '
+  exchangeRate: EXCHANGE_RATE_DEFAULT_VALUE,
+  sourceAmount: SOURCE_AMOUNT_DEFAULT_VALUE,
+  targetAmount: TARGET_AMOUNT_DEFAULT_VALUE,
+  headerMessage: HEADER_MESSAGE_DEFAULT_VALUE
 };
 
 const rootReducer = (state = initialState, action) => {
